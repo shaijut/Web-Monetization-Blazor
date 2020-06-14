@@ -1,0 +1,97 @@
+﻿    @page "/"
+    @inject IJSRuntime JSRuntime
+    @inject HttpClient Http
+
+    <WebMonetization PaymentPointer="$ilp.uphold.com/24HhrUGG7ekn" /> 
+
+@if (articlesList == null)
+{
+    <p><em>Loading Articles...</em></p>
+}
+else
+{
+     <div class="row mb-2">
+
+     @foreach (var articles in articlesList)
+            {
+
+        <div class="col-md-6">
+          <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+              <strong class="d-inline-block mb-2 text-primary">@articles.Type</strong>
+              <h3 class="mb-0">
+                <a class="text-dark" href="#">@articles.Title</a>
+              </h3>
+              <div class="mb-1 text-muted">@articles.Date</div>
+              <p class="card-text mb-auto">@articles.Description</p>
+                    <button @onclick="(()=> ReadFullArticle(articles.isPremium))" class="btn btn-primary">Read Full Article</button>
+              @* <button onclick=@(() => ReadFullArticle(@articles.isPremium)) class="btn btn-primary">Read Full Article</button> *@
+            </div>
+            <img class="card-img-right flex-auto d-none d-lg-block" src="@articles.ImageName" alt="Card image cap">
+          </div>
+        </div>
+        
+            }
+      
+      </div>
+}
+
+
+  <div id="premiumArticleModal" class="modal fade bd-example-modal-sm" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+     
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Premium article</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="text-align: center;">
+          <h3>This is premium article.</h3>
+          <a href="http://coil.com">Click here</a><h5> to become Coil member to enjoy our premium articles.</h5>
+          <h3>Thank you :).</h3>    
+          </div>
+          <div class="modal-footer">
+            <button type="button" @onclick="ClosePremiumModal" class="btn btn-success btn-lg btn-block">Got It</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+      @code {
+    private Articles[] articlesList;
+
+    protected override async Task OnInitializedAsync()
+    {
+        articlesList = await Http.GetFromJsonAsync<Articles[]>("sample-data/articles.json");
+    }
+
+    
+  public async void ReadFullArticle(bool isPremium) 
+  {
+     await JSRuntime.InvokeVoidAsync("ReadFull", isPremium);
+  }
+
+    public async void ClosePremiumModal() 
+  {
+     await JSRuntime.InvokeVoidAsync("closePremiumModal");
+  }
+
+    public class Articles
+    {
+       public string Type { get; set; }
+
+        public string Date { get; set; }
+
+        public string Title { get; set; }
+       
+        public string Description { get; set; }
+
+         public string ImageName { get; set; }
+
+        public bool isPremium { get; set; }
+    }
+}

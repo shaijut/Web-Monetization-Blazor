@@ -1,0 +1,16 @@
+
+@inject IJSRuntime JSRuntime
+
+
+@code {
+
+protected override async Task OnInitializedAsync()
+{
+    await JSRuntime.InvokeVoidAsync("enableWebMonetization", PaymentPointer);
+    await JSRuntime.InvokeVoidAsync("startWebMonetization");
+}
+
+    [Parameter]
+    public string PaymentPointer { get; set; }
+
+}

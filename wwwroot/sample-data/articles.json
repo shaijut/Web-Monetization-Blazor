@@ -1,0 +1,34 @@
+﻿[
+  {
+    "Type": "Web",
+    "Date": "June 12",
+    "Title": "What is Blazor ?",
+    "Description": "This is all about blazor.",
+    "ImageName": "apple-coffee-computer-desk-356056.jpg",
+    "isPremium": true
+  },
+  {
+    "Type": "Design",
+    "Date": "June 14",
+    "Title": "A CSS Crash Course",
+    "Description": "This is all about web design.",
+    "ImageName": "black-pencils-and-design-word-6444.jpg",
+    "isPremium": false
+  },
+  {
+    "Type": "Data",
+    "Date": "June 11",
+    "Title": "How to learn SQL ?",
+    "Description": "This is all about SQL.",
+    "ImageName": "blur-close-up-code-computer-546819.jpg",
+    "isPremium": true
+  },
+  {
+    "Type": "Machine Learning",
+    "Date": "June 10",
+    "Title": "AI start today",
+    "Description": "This is all about Machine Learning.",
+    "ImageName": "gray-laptop-computer-showing-html-codes-in-shallow-focus-160107.jpg",
+    "isPremium": false
+  }
+]
