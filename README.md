@@ -1,4 +1,5 @@
 # Web-Monetization-Blazor
+
 A Blazor WebAssembly Component for Web Monetization
 
 ## Blazor Component:
@@ -6,9 +7,10 @@ A Blazor WebAssembly Component for Web Monetization
     <WebMonetization PaymentPointer="your payment Pointer URL" /> 
 
 
-## How to use and run
+## How to run the Web App ?
 
-1. Download .Net Core SDK
-2. Move to Project Directory and run `dotnet run`
+## 1. Download  [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download)
+## 2. Clone or Download the project. 
+## 3. Open Terminal and Move to Project Directory and type `dotnet run` and hit enter.
 
 
